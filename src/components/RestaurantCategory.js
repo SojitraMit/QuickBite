@@ -8,9 +8,9 @@ const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
     }
   };
   return (
-    <div onClick={handleClick}>
+    <div>
       <div className="bg-gray-100 p-4 w-7/12 mx-auto my-3  hover:bg-gray-200 shadow-lg">
-        <div className="flex justify-between">
+        <div className="flex justify-between" onClick={handleClick}>
           <span className="font-bold ">
             {data.title} ({data.itemCards.length})
           </span>

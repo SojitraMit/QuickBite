@@ -2,16 +2,18 @@ import RestaurantCards, {
   WithVegLable,
   WithNonVegLable,
 } from "./RestaurantCards";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
+import UserContext from "../utils/UserContext";
 
 const Body = () => {
   // Always use useState in function component.
   const [ResList, setResList] = useState([]);
   const [searchText, setsearchText] = useState("");
   const [filterResList, setfilterResList] = useState([]);
+  const { setUserName, loggedInUser } = useContext(UserContext);
 
   const ResCardVeg = WithVegLable();
   const ResCardNonVeg = WithNonVegLable();
@@ -27,14 +29,27 @@ const Body = () => {
 
     const json = await data.json();
 
-    const restaurants =
-      json?.data?.cards[4]?.card?.card?.gridElements?.infoWithStyle
-        ?.restaurants;
+    // Aggregate restaurants from all relevant cards
+    let restaurants = [];
+    if (json?.data?.cards) {
+      json.data.cards.forEach((card) => {
+        if (card?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
+          restaurants = restaurants.concat(
+            card.card.card.gridElements.infoWithStyle.restaurants
+          );
+        }
+      });
+    }
 
-    setResList(restaurants || []);
-    setfilterResList(restaurants || []);
+    // Remove duplicates based on info.id
+    const uniqueRestaurants = Array.from(
+      new Map(restaurants.map((item) => [item.info.id, item])).values()
+    );
+
+    // Set the list and filtered list
+    setResList(uniqueRestaurants || []);
+    setfilterResList(uniqueRestaurants || []);
   };
-
   const onlineStatus = useOnlineStatus();
 
   if (onlineStatus === false) {
@@ -79,6 +94,14 @@ const Body = () => {
             {" "}
             Top rated restaurant
           </button>
+          <label>User name : </label>
+          <input
+            className="border border-black p-1 m-2"
+            type="text"
+            value={loggedInUser}
+            onChange={(e) => {
+              setUserName(e.target.value);
+            }}></input>
         </div>
       </div>
 
