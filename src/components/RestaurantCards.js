@@ -8,9 +8,12 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCards = ({ resData }) => {
   const { name, cuisines, avgRating, sla, costForTwo, cloudinaryImageId } =
     resData.info;
+  console.log(resData);
 
   return (
-    <div className="m-1 p-1 w-[208px] h-[350px] rounded-lg bg-gray-100 border-[1px] hover:bg-gray-300 ">
+    <div
+      data-testid="resCard"
+      className="m-1  p-1 w-[208px] h-[350px] rounded-lg bg-gray-100 border-[1px] hover:bg-gray-300 overflow-hidden text-center">
       <div className="h-[45%] w-[100%]  ">
         <img
           className="w-[100%] h-[100%] object-cover rounded-lg"
@@ -21,14 +24,16 @@ const RestaurantCards = ({ resData }) => {
           alt={name}
         />
       </div>
-      <h3 className="font-bold py-2 text-lg ">{name}</h3>
-      <h6 className="cuisine">{cuisines.join(", ")}</h6>
-      <div id="rating">
-        <h4 className="star">{avgRating} stars</h4>
-        <h4 className="time">{sla.deliveryTime} mins</h4>
+      <h3 className="font-bold pt-2 text-lg ">{name}</h3>
+      <h6 className="cuisine text-xs mt-0">{cuisines.join(", ")}</h6>
+      <div className="rating my-3 flex justify-center items-center">
+        <h4 className="star text-green-600 border w-17 px-1 rounded-lg">
+          {avgRating} stars
+        </h4>
+        <h4 className="time mx-3">⏱{sla.deliveryTime} mins</h4>
       </div>
-      <h5 className="price">{costForTwo} </h5>
-      <h6 className="off">
+      <h5 className="price text-amber-950">{costForTwo} </h5>
+      <h6 className="off text-rose-900">
         {resData.info.aggregatedDiscountInfoV2?.header || "No Offer"}
       </h6>
     </div>

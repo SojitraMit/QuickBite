@@ -20,7 +20,7 @@ const RestaurantMenu = () => {
     resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards[2]?.card?.card
       ?.itemCards || [];
 
-  const list = resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards;
+  const list = resInfo[4]?.groupedCard?.cardGroupMap?.REGULAR?.cards || [];
   const categories = list.filter(
     (c) =>
       c.card?.card?.["@type"] ===

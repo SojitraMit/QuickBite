@@ -1,0 +1,111 @@
+{
+  "@type": "type.googleapis.com/swiggy.presentation.food.v2.Restaurant",
+  "info": {
+    "id": "262677",
+    "name": "Crave Eatables",
+    "cloudinaryImageId": "ryjntrxla2beilfyz9nm",
+    "locality": "Rupani Road",
+    "areaName": "Ghogha Circle",
+    "costForTwo": "₹300 for two",
+    "cuisines": ["Fast Food", "South Indian", "Chinese", "Biryani"],
+    "avgRating": 4.3,
+    "veg": true,
+    "parentId": "65547",
+    "avgRatingString": "4.3",
+    "totalRatingsString": "12K+",
+    "sla": {
+      "deliveryTime": 14,
+      "lastMileTravel": 0.5,
+      "serviceability": "SERVICEABLE",
+      "slaString": "10-15 mins",
+      "lastMileTravelString": "0.5 km",
+      "iconType": "ICON_TYPE_EMPTY"
+    },
+    "availability": {
+      "nextCloseTime": "2025-09-03 23:00:00",
+      "opened": true
+    },
+    "badges": {
+      "imageBadges": [
+        {
+          "imageId": "android/static-assets/icons/big_rx.png",
+          "description": "bolt!"
+        },
+        {
+          "imageId": "Rxawards/_CATEGORY-Snacks.png",
+          "description": "Delivery!"
+        },
+        {
+          "imageId": "Ratnesh_Badges/Rx_Awards_2025/_Milestone%20Restaurants.png",
+          "description": "Delivery!"
+        }
+      ]
+    },
+    "isOpen": true,
+    "type": "F",
+    "badgesV2": {
+      "entityBadges": {
+        "imageBased": {
+          "badgeObject": [
+            {
+              "attributes": {
+                "description": "bolt!",
+                "imageId": "android/static-assets/icons/big_rx.png"
+              }
+            },
+            {
+              "attributes": {
+                "description": "Delivery!",
+                "imageId": "Rxawards/_CATEGORY-Snacks.png"
+              }
+            },
+            {
+              "attributes": {
+                "description": "Delivery!",
+                "imageId": "Ratnesh_Badges/Rx_Awards_2025/_Milestone%20Restaurants.png"
+              }
+            }
+          ]
+        },
+        "textBased": {},
+        "textExtendedBadges": {}
+      }
+    },
+    "aggregatedDiscountInfoV3": {
+      "header": "ITEMS",
+      "subHeader": "AT ₹129"
+    },
+    "orderabilityCommunication": {
+      "title": {},
+      "subTitle": {},
+      "message": {},
+      "customIcon": {}
+    },
+    "differentiatedUi": {
+      "displayType": "ADS_UI_DISPLAY_TYPE_ENUM_DEFAULT",
+      "differentiatedUiMediaDetails": {
+        "mediaType": "ADS_MEDIA_ENUM_IMAGE",
+        "lottie": {},
+        "video": {}
+      }
+    },
+    "reviewsSummary": {},
+    "displayType": "RESTAURANT_DISPLAY_TYPE_DEFAULT",
+    "restaurantOfferPresentationInfo": {},
+    "externalRatings": {
+      "aggregatedRating": {
+        "rating": "--"
+      }
+    },
+    "ratingsDisplayPreference": "RATINGS_DISPLAY_PREFERENCE_SHOW_SWIGGY"
+  },
+  "analytics": {
+    "context": "seo-data-024369e1-10c4-4ec1-9477-e880571f45f2"
+  },
+  "cta": {
+    "link": "https://www.swiggy.com/city/bhavnagar/crave-eatables-rupani-road-ghogha-circle-rest262677",
+    "text": "RESTAURANT_MENU",
+    "type": "WEBLINK"
+  },
+  "widgetId": "collectionV5RestaurantListWidget_SimRestoRelevance_food_seo"
+}

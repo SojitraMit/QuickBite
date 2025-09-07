@@ -69,6 +69,7 @@ const Body = () => {
           <input
             type="text"
             className="border border-solid border-black"
+            data-testid="searchInput"
             value={searchText}
             onChange={(e) => {
               setsearchText(e.target.value);
@@ -81,7 +82,7 @@ const Body = () => {
               );
               setfilterResList(filterRes);
             }}>
-            search
+            Search
           </button>
         </div>
         <div className="flex items-center">

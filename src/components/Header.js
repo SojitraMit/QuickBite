@@ -36,14 +36,12 @@ const Header = () => {
           <li className="mx-3">
             <Link to="/cart">Cart-({cartItems.length})</Link>
           </li>
-          <li className="mx-3">
-            <Link to="/grocery">Grocery</Link>
-          </li>
           <button
             className="mx-3"
             onClick={() => {
               BtnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
-            }}>
+            }}
+            name="Login">
             {BtnName}
           </button>
           <li>{loggedInUser}</li>

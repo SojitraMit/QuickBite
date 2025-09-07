@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import ItemList from "./ItemList";
+import CartCard from "./CartCard";
 import { clearCart } from "../utils/cartSlice";
 
 const Cart = () => {
@@ -13,7 +13,7 @@ const Cart = () => {
     <div className="text-center">
       <h1 className="m-5 text-xl font-bold">cart</h1>
       <button
-        className="float-right mr-84 text-sm border text-green-900 px-2 rounded-lg"
+        className="float-right mr-84 text-sm border text-green-900 px-2 rounded-lg cursor-pointer"
         onClick={handleClearCart}>
         Clear Cart
       </button>
@@ -25,7 +25,7 @@ const Cart = () => {
       )}
 
       <div className="mt-13 w-7/12 mx-auto">
-        <ItemList items={cartItem} />
+        <CartCard items={cartItem} />
       </div>
     </div>
   );
