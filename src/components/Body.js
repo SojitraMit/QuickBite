@@ -97,7 +97,7 @@ const Body = () => {
           </button>
           <label>User name : </label>
           <input
-            className="border border-black p-1 m-2"
+            className="border border-black p-1 m-2 h-7"
             type="text"
             value={loggedInUser}
             onChange={(e) => {

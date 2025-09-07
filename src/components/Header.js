@@ -24,20 +24,20 @@ const Header = () => {
       <div className="flex items-center">
         <ul className="flex m-8  ">
           <li className="px-2">Online Status : {onlineStatus ? "🟢" : "🔴"}</li>
-          <li className="mx-3">
+          <li className="mx-3 hover:text-blue-700">
             <Link to="/">Home</Link>
           </li>
-          <li className="mx-3">
+          <li className="mx-3 hover:text-blue-700 ">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="mx-3">
+          <li className="mx-3 hover:text-blue-700">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="mx-3">
+          <li className="mx-3 hover:text-blue-700">
             <Link to="/cart">Cart-({cartItems.length})</Link>
           </li>
           <button
-            className="mx-3"
+            className="mx-3 hover:text-blue-700 cursor-pointer"
             onClick={() => {
               BtnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
             }}

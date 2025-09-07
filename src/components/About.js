@@ -6,10 +6,10 @@ import { useContext } from "react";
 const About = () => {
   const { loggedInUser } = useContext(UserContext);
   return (
-    <div>
-      <h1>Information</h1>
+    <div className="text-center">
+      <h1 className="font-bold text-2xl">Information</h1>
+
       <User name={"Mit(function)"} location={"Bhavnagar"} />
-      <UserClass name={"Mit(calss)"} location={"Bhavnagar"} />
     </div>
   );
 };
