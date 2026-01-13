@@ -15,31 +15,33 @@ const Header = () => {
   const cartItems = useSelector((store) => store.cart.items);
 
   return (
-    <div className="flex justify-between bg-pink-200 lg:bg-amber-100">
+    <div className="flex justify-between bg-white border-b-4 border-yellow-600">
       <div className="logo-container">
         <img className="w-40" src={LOGO_URL} alt="Logo" />
       </div>
       <div className="flex items-center">
         <ul className="flex m-8  ">
-          <li className="px-2">Online Status : {onlineStatus ? "🟢" : "🔴"}</li>
-          <li className="mx-3 hover:text-blue-700">
+          <li className="px-2 text-cyan-600">
+            Online Status : {onlineStatus ? "🟢" : "🔴"}
+          </li>
+          <li className="mx-3 text-cyan-600 hover:text-blue-700 hover:scale-110   transition-transform ">
             <Link to="/">Home</Link>
           </li>
-          <li className="mx-3 hover:text-blue-700 ">
+          <li className="mx-3 text-cyan-600 hover:text-blue-700 hover:scale-110   transition-transform">
             <Link to="/about">About Us</Link>
           </li>
-          <li className="mx-3 hover:text-blue-700">
+          <li className="mx-3 text-cyan-600 hover:text-blue-700 hover:scale-110   transition-transform">
             <Link to="/contact">Contact Us</Link>
           </li>
-          <li className="mx-3 hover:text-blue-700">
+          <li className="mx-3 text-cyan-600 hover:text-blue-700 hover:scale-110   transition-transform">
             <Link to="/cart">Cart-({cartItems.length})</Link>
           </li>
           <button
-            className="mx-3 hover:text-blue-700 cursor-pointer"
+            className="mx-3 text-cyan-600 hover:text-blue-700 cursor-pointer hover:scale-110   transition-transform"
             onClick={() => {
               BtnName === "Login" ? setBtnName("Logout") : setBtnName("Login");
             }}
-            name="Login">
+            name="Login hover:scale-110   transition-transform">
             {BtnName}
           </button>
           <li className="absolute ml-[490px] mt-6">{loggedInUser}</li>

@@ -1,23 +1,46 @@
 import ItemList from "./ItemList";
-import { useState } from "react";
 
 const RestaurantCategory = ({ data, showItem, setShowIndex }) => {
   const handleClick = () => {
-    {
-      showItem ? setShowIndex(false) : setShowIndex(true);
-    }
+    showItem ? setShowIndex(false) : setShowIndex(true);
   };
+
   return (
-    <div>
-      <div className="bg-gray-100 p-4 w-7/12 mx-auto my-3  hover:bg-gray-200 shadow-lg">
-        <div className="flex justify-between" onClick={handleClick}>
-          <span className="font-bold ">
-            {data.title} ({data.itemCards.length})
+    <div className="w-8/12 mx-auto my-5 ">
+      {/* CATEGORY HEADER */}
+      <div
+        onClick={handleClick}
+        className="
+          flex justify-between items-center
+          bg-gray-200 hover:bg-gray-300
+          px-6 py-4
+          rounded-xl cursor-pointer
+          shadow-md hover:shadow-lg
+          transition-all duration-300 ease-in-out
+        ">
+        <span className="font-bold text-lg text-gray-800">
+          {data.title}{" "}
+          <span className="text-gray-500 text-sm">
+            ({data.itemCards.length})
           </span>
-          <span> ⬇</span>
-        </div>
-        {showItem && <ItemList items={data.itemCards} />}
+        </span>
+
+        {/* ARROW */}
+        <span
+          className={`
+            text-xl transition-transform duration-300
+            ${showItem ? "rotate-180" : "rotate-0"}
+          `}>
+          ⌄
+        </span>
       </div>
+
+      {/* ITEM LIST */}
+      {showItem && (
+        <div className="mt-4 transition-all duration-300 ease-in-out">
+          <ItemList items={data.itemCards} />
+        </div>
+      )}
     </div>
   );
 };
