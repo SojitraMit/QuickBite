@@ -11,10 +11,8 @@ const Header = () => {
   const onlineStatus = useOnlineStatus();
 
   const { loggedInUser } = useContext(UserContext);
-  console.log(loggedInUser);
 
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   return (
     <div className="flex justify-between bg-pink-200 lg:bg-amber-100">
@@ -44,7 +42,7 @@ const Header = () => {
             name="Login">
             {BtnName}
           </button>
-          <li>{loggedInUser}</li>
+          <li className="absolute ml-[490px] mt-6">{loggedInUser}</li>
         </ul>
       </div>
     </div>

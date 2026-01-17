@@ -8,7 +8,6 @@ import { CDN_URL } from "../utils/constants";
 const RestaurantCards = ({ resData }) => {
   const { name, cuisines, avgRating, sla, costForTwo, cloudinaryImageId } =
     resData.info;
-  console.log(resData);
 
   return (
     <div

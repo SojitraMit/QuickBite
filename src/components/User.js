@@ -14,7 +14,6 @@ const User = ({ name, location }) => {
     const data = await fetch("https://api.github.com/users/SojitraMit");
     const json = await data.json();
     useValue(json);
-    console.log(json);
   };
 
   const { login, id, avatar_url } = value;
