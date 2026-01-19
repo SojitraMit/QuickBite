@@ -7,110 +7,110 @@ import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/useOnlineStatus";
 import UserContext from "../utils/UserContext";
+import resCardData from "../components/Mocks/resCardMock.json";
 
 const Body = () => {
-  // Always use useState in function component.
-  const [ResList, setResList] = useState([]);
-  const [searchText, setsearchText] = useState("");
-  const [filterResList, setfilterResList] = useState([]);
+  const [resList, setResList] = useState([]);
+  const [filteredResList, setFilteredResList] = useState([]);
+  const [searchText, setSearchText] = useState("");
+
   const { setUserName, loggedInUser } = useContext(UserContext);
 
   const ResCardVeg = WithVegLable();
-  const ResCardNonVeg = WithNonVegLable();
+  const ResCardNonVeg = WithNonVegLable(RestaurantCards);
 
   useEffect(() => {
-    fetchData();
+    loadMockData();
   }, []);
 
-  const fetchData = async () => {
-    const data = await fetch(
-      "https://www.swiggy.com/dapi/restaurants/list/v5?lat=21.7644725&lng=72.15193040000001&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-    );
+  const loadMockData = () => {
+    const json = resCardData; // ✅ already parsed JSON
 
-    const json = await data.json();
-
-    // Aggregate restaurants from all relevant cards
     let restaurants = [];
-    if (json?.data?.cards) {
-      json.data.cards.forEach((card) => {
-        if (card?.card?.card?.gridElements?.infoWithStyle?.restaurants) {
-          restaurants = restaurants.concat(
-            card.card.card.gridElements.infoWithStyle.restaurants
-          );
-        }
-      });
-    }
 
-    // Remove duplicates based on info.id
+    json?.data?.cards?.forEach((card) => {
+      const res = card?.card?.card?.gridElements?.infoWithStyle?.restaurants;
+      if (res) {
+        restaurants = restaurants.concat(res);
+      }
+    });
+
+    // Remove duplicate restaurants
     const uniqueRestaurants = Array.from(
-      new Map(restaurants.map((item) => [item.info.id, item])).values()
+      new Map(restaurants.map((item) => [item.info.id, item])).values(),
     );
 
-    // Set the list and filtered list
-    setResList(uniqueRestaurants || []);
-    setfilterResList(uniqueRestaurants || []);
+    setResList(uniqueRestaurants);
+    setFilteredResList(uniqueRestaurants);
   };
+
   const onlineStatus = useOnlineStatus();
 
-  if (onlineStatus === false) {
+  if (!onlineStatus) {
     return (
-      <h1>
-        Looks like you are offline !! Pleace check your internet connection{" "}
+      <h1 className="text-center mt-10 text-xl">
+        Looks like you are offline! Please check your internet connection.
       </h1>
     );
   }
 
-  return ResList.length === 0 ? (
-    <Shimmer />
-  ) : (
+  if (resList.length === 0) {
+    return <Shimmer />;
+  }
+
+  return (
     <div className="body">
-      <div className="filter flex">
-        <div className="search m-2 p-2">
+      {/* FILTER SECTION */}
+      <div className="filter flex flex-wrap items-center gap-4 my-4 mx-14 ">
+        {/* SEARCH */}
+        <div className="search">
           <input
             type="text"
-            className="border border-solid border-black"
+            className="border border-black p-1"
             data-testid="searchInput"
             value={searchText}
-            onChange={(e) => {
-              setsearchText(e.target.value);
-            }}></input>
+            onChange={(e) => setSearchText(e.target.value)}
+          />
           <button
-            className="m-2 px-3 py-0.5 bg-green-200 rounded-lg"
+            className="ml-2 px-3 py-1 bg-green-200 rounded-lg cursor-pointer"
             onClick={() => {
-              const filterRes = ResList.filter((res) =>
-                res.info.name.toLowerCase().includes(searchText.toLowerCase())
+              const filtered = resList.filter((res) =>
+                res.info.name.toLowerCase().includes(searchText.toLowerCase()),
               );
-              setfilterResList(filterRes);
+              setFilteredResList(filtered);
             }}>
             Search
           </button>
         </div>
+
+        {/* TOP RATED */}
+        <button
+          className="border border-black px-3 py-1 rounded-lg cursor-pointer hover:bg-slate-200"
+          onClick={() => {
+            const filtered = resList.filter((res) => res.info.avgRating > 4.5);
+            setFilteredResList(filtered);
+          }}>
+          Top Rated Restaurants
+        </button>
+
+        {/* USERNAME */}
         <div className="flex items-center">
-          <button
-            className="border border-solid border-black px-2 mx-5 rounded-lg "
-            onClick={() => {
-              const filter = ResList.filter((res) => res.info.avgRating > 4.5);
-              setfilterResList(filter);
-            }}>
-            {" "}
-            Top rated restaurant
-          </button>
-          <label>User name : </label>
+          <label className="mr-2">User name:</label>
           <input
-            className="border border-black p-1 m-2 h-7"
+            className="border border-black p-1 h-7"
             type="text"
             value={loggedInUser}
-            onChange={(e) => {
-              setUserName(e.target.value);
-            }}></input>
+            onChange={(e) => setUserName(e.target.value)}
+          />
         </div>
       </div>
 
+      {/* RESTAURANT CARDS */}
       <div className="flex flex-wrap justify-center gap-5">
-        {filterResList.map((restaurant) => (
+        {filteredResList.map((restaurant) => (
           <Link
-            to={"/restaurant/" + restaurant.info.id}
-            key={restaurant.info.id}>
+            key={restaurant.info.id}
+            to={"/restaurant/" + restaurant.info.id}>
             {restaurant.info.veg ? (
               <ResCardVeg resData={restaurant} />
             ) : (

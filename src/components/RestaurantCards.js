@@ -44,7 +44,7 @@ export const WithVegLable = () => {
   return (props) => {
     return (
       <div>
-        <label className="absolute bg-green-400 px-3 rounded-lg m-1 mx-2 ">
+        <label className="absolute  bg-green-400 px-3 rounded-lg m-1 mx-2 ">
           Vegetarian
         </label>
         <RestaurantCards {...props} />
